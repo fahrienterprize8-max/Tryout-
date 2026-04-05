@@ -292,6 +292,14 @@
             const payload = { 
                 contents: [{ parts: [{ text: prompt }] }], 
                 generationConfig: { responseMimeType: "application/json" } 
+                // Cari bagian catch (error) di sekitar baris 283
+} catch (error) {
+    alert("Error Nih: " + error.message); // Tambahkan baris ini!
+    if (i === retries - 1) throw error;
+    await new Promise(resolve => setTimeout(resolve, delay));
+    delay *= 2;
+}
+
             };
             
             let delay = 1000;
